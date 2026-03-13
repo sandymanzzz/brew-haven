@@ -321,3 +321,4 @@ brew-haven/
 **Images not loading?**
 - Product images use Unsplash URLs — requires internet connection
 - Images have fallback handlers for broken URLs
+"# brew-haven" 
