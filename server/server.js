@@ -8,7 +8,15 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:5174',
+    /\.vercel\.app$/,
+    /\.onrender\.com$/,
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // Routes
@@ -32,12 +40,3 @@ mongoose
     });
   })
   .catch((err) => console.error('MongoDB connection error:', err));
-
-app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'https://brew-haven.vercel.app',
-    /\.vercel\.app$/
-  ],
-  credentials: true
-}));
