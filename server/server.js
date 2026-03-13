@@ -32,3 +32,12 @@ mongoose
     });
   })
   .catch((err) => console.error('MongoDB connection error:', err));
+
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://brew-haven.vercel.app',
+    /\.vercel\.app$/
+  ],
+  credentials: true
+}));
