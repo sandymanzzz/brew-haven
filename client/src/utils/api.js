@@ -13,7 +13,11 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (res) => res,
   (err) => {
-    if (err.response?.status === 401) {
+    // Only redirect to login if it's NOT a login/register request
+    const isAuthRoute = err.config?.url?.includes('/auth/login') ||
+                        err.config?.url?.includes('/auth/register');
+
+    if (err.response?.status === 401 && !isAuthRoute) {
       localStorage.removeItem('brewHavenUser');
       window.location.href = '/login';
     }
